@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Form Challenge</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="scripts.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <form id="sign-up-form" onsubmit="return validateForm()">
+        <header>
+          <h1> Sign Up Now </h1>
+          <p class="heading-text">Pick your new website,free forever.</p>
+        </header>
+        <div class="form-body">
+          <span class="subtitle-number">1</span><h2>Pick a website address.</h2>
+          <fieldset>
+              <label for="website-input">Website address:</label>
+              <div class="website-input-container">
+                <input type="text"autocorrect="off" autocomplete="off" id="website-input" pattern="[a-zA-Z0-9_.-]{2,16}" title="Allowed characters are letters,numbers and .-_" required
+								/><span class="domain-name">.free-websites.com</span>
+              </div>
+          </fieldset>
+          <span class="subtitle-number">2</span><h2>Create an account.</h2>
+          <fieldset>
+            <label for="name-input">Full name:</label>
+            <div class="name-container">
+              <input type="text" autocorrect="off" autocomplete="name" id="name-input" pattern="[a-zA-Z0-9.\s]{2,}" title="Allowed characters are letters,numbers . and space."required/>
+            </div>
+            <label for="email-input">Email address:</label>
+            <div class="email-container" id="signup-email-container">
+              <input type="email" autocapitalize="off" autocorrect="off" autocomplete="email" id="email-input" required/>
+            </div>
+            <label for="password-input">Password:</label>
+            <div class="password-container">
+              <input type="password" autocorrect="off" id="password-input" pattern="[\s\S]{4,16}" title="Password must be between 4 and 16 characters long." required/>
+            </div>
+						<div class="checkbox-container">
+							<input type="checkbox" id="reveal-checkbox"/>
+							<label for="reveal-checkbox" class="checkbox-label"><span onclick="toggleVisibility()"></span>Reveal Password</label>
+						</div>
+
+          </fieldset>
+          <span class="subtitle-number">3</span><h2>Enter your payment info.</h2>
+          <fieldset>
+            <label for="credit-card-input">Credit card number:</label>
+            <div class="credit-card-container">
+              <input type="text" autocorrect="off" id="credit-card-input" autocomplete="cc-number" pattern="[0-9]{16,16}" title="Only numbers are allowed,must be 16 digits." required
+              /><span class='image-container'><!--
+							--><img src="./images/cc-icon-visa.png" srcset="./images/cc-icon-visa.png 1x, ./images/cc-icon-visa@2x.png 2x" alt="visa" class="credit-card-img"/><!--
+              --><img src="./images/cc-icon-mastercard.png" srcset="./images/cc-icon-mastercard.png 1x, ./images/cc-icon-mastercard@2x.png 2x" alt="mastercard" class="credit-card-img"/><!--
+              --><img src="./images/cc-icon-discover.png" srcset="./images/cc-icon-discover.png 1x, ./images/cc-icon-discover@2x.png 2x" alt="discover" class="credit-card-img"/><!--
+              --><img src="./images/cc-icon-amex.png" srcset="./images/cc-icon-amex.png 1x, ./images/cc-icon-amex@2x.png 2x" alt="american express" class="credit-card-img"/>
+              </span>
+            </div>
+						<div class="left-side">
+							<label for="security-code-input" class="input-label">Security code:</label>
+							<div class="security-code-container">
+								<input type="text" autocorrect="off" id="security-code-input" pattern="[0-9]{3,4}" title="Only numbers are allowed, must be 3-4 digits long." required/>
+							</div>
+						</div><!--
+						--><div class="right-side">
+							<label id="expiration-date-label">Expiration date:</label>
+							<div class="expiration-date-container">
+								<select aria-labelledby="expiration-date-label" id="expiration-month-input">
+	    						<option value="1" selected>01-January</option>
+	    						<option value="2">02-February</option>
+	    						<option value="3">03-March</option>
+									<option value="4">04-April</option>
+									<option value="5">05-May</option>
+									<option value="6">06-June</option>
+									<option value="7">07-July</option>
+									<option value="8">08-August</option>
+									<option value="9">09-September</option>
+									<option value="10">10-October</option>
+									<option value="11">11-November</option>
+									<option value="12">12-December</option>
+	  						</select><!--
+	          --><input type="number" autocorrect="off" id="expiration-year-input" aria-labelledby="expiration-date-label" min="2012" max="2022" required/>
+							</div>
+						</div>
+          </fieldset>
+          <button type="submit" id="sign-up-btn">Create your website</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
