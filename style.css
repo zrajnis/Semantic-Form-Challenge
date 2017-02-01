@@ -91,6 +91,10 @@ input[type="password"], input[type="number"], select{
   border-right: none;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
+  vertical-align: top;
+}
+.website-input-container{
+  height: 40px;
 }
 .domain-name{
   display: inline-block;
@@ -128,11 +132,14 @@ input[type="password"], input[type="number"], select{
   cursor: pointer;
   border-radius: 3px;
 }
-#reveal-checkbox:checked + label{
-  background: url('./images/check-icon.png') 7px -4px no-repeat;
+#reveal-checkbox:checked + label img{
+  display: inline-block;
+  position: absolute;
+  top: 12px;
+  left: 4px;
 }
-#reveal-checkbox:checked + label span{
-  background:#4C8DD0 url('./images/check-icon.png') 4px 2px no-repeat;
+.checkbox-container{
+  position: relative;
 }
 .checkbox-label{
   font-family: "Open Sans", sans-serif;
@@ -201,4 +208,7 @@ select{
 .warning-img{
   display: block;
   margin: 0 auto;
+}
+.hidden{
+  display: none;
 }
