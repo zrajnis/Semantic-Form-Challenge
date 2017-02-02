@@ -122,7 +122,7 @@ input[type="password"], input[type="number"], select{
   text-align: center;
 }
 #domain-label{
-  vertical-align: middle;
+  vertical-align: top;
 }
 .name-container, .email-container, .credit-card-container{
   margin-bottom: 30px;
