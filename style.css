@@ -43,7 +43,6 @@ h1{
   margin-left: 10px;
 }
 .subtitle-container{
-  display: inline-block;
   position: relative;
   margin: 0px;
   margin-bottom: 5px; /* +15 from changing posiion*/
