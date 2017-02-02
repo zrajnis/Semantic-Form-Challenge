@@ -7,6 +7,12 @@ var creditCardRegex = /^[0-9]{16,16}$/;
 var securityRegex = /^[0-9]{3,4}$/;
 var expirationYearRegex = /^[0-9]{4,4}$/;
 
+//regular expressions for credit card types
+var visaRegex = /^4[0-9]{6,}$/;
+var mastercardRegex = /^5[1-5][0-9]{5,}|222[1-9][0-9]{3,}|22[3-9][0-9]{4,}|2[3-6][0-9]{5,}|27[01][0-9]{4,}|2720[0-9]{3,}$/;
+var discoverRegex = /^6(?:011|5[0-9]{2})[0-9]{3,}$/;
+var amexRegex = /^3[47][0-9]{5,}$/;
+
 //error messages for each container
 var websiteError = 'Please enter a valid website address.';
 var nameError = 'Please enter a valid name.';
@@ -28,6 +34,28 @@ var image = new Image(2,16);
     image.setAttribute('alt', 'warning');
     image.setAttribute('class', 'warning-img');
 var label = document.createElement('label');
+
+function determineCardType() {
+  var creditCardNumber = document.getElementById('credit-card-input');
+  if(visaRegex.test(creditCardNumber.value) === true){
+    document.getElementById('visa-radio').checked = true;
+  }
+  else if(mastercardRegex.test(creditCardNumber.value) === true){
+    document.getElementById('mastercard-radio').checked = true;
+  }
+  else if(discoverRegex.test(creditCardNumber.value) === true){
+    document.getElementById('discover-radio').checked = true;
+  }
+  else if(amexRegex.test(creditCardNumber.value) === true){
+    document.getElementById('amex-radio').checked = true;
+  }
+  else{
+    document.getElementById('visa-radio').checked = false;
+    document.getElementById('mastercard-radio').checked = false;
+    document.getElementById('discover-radio').checked = false;
+    document.getElementById('amex-radio').checked = false;
+  }
+}
 
 function toggleVisibility() {
   var passwordInput = document.getElementById('password-input');
@@ -101,7 +129,7 @@ function validateForm (){
   else if(expirationDateYear.value.trim() === '' ||
   expirationYearRegex.test(expirationDateYear.value) === false ||
   expirationDateYear.value > (currentYear + 5) ||
-  expirationDateYear.value < (currentYear - 5)){
+  expirationDateYear.value < currentYear){
     errorMsg(expirationDateYear,expirationYearError);
     return false;
   }

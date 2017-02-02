@@ -1,3 +1,10 @@
+
+.domain-name, input[type="text"], input[type="email"],
+input[type="password"], input[type="number"], select, .credit-card-label{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 .container{
   width: 540px;
   background-color: #ABCCD5;
@@ -25,7 +32,7 @@ h1{
   margin-bottom: 0px;
   margin-left: 10px;
 }
-.heading-text, label, #domain-name{
+.heading-text, label, .domain-name{
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 16px;
@@ -38,7 +45,7 @@ label{
   margin-top: 0px;
   margin-left: 10px;
 }
-h2{
+.subtitle-text{
   display: inline-block;
   margin: 0px;
   font-family: "Open Sans", sans-serif;
@@ -46,10 +53,10 @@ h2{
   font-size: 24px;
   color: #4C8DD0;
 }
-.subtitle-number{
+.subtitle-number-container{
   position:relative;
   left: -15px;
-  top: -4px;
+  top: -5px;
   display: inline-block;
   background-color: white;
   font-family: Georgia, serif;
@@ -61,6 +68,9 @@ h2{
   width:30px;
   -moz-border-radius: 50%;
   border-radius: 50%;
+}
+.subtitle-number{
+  vertical-align: middle;
 }
 fieldset{
   width: 400px;
@@ -74,7 +84,7 @@ fieldset{
 }
 input[type="text"], input[type="email"],
 input[type="password"], input[type="number"], select{
-  height: 36px;
+  height: 40px;
   width: 400px;
   border-radius: 3px;
   border:1px solid #4C8DD0;
@@ -84,9 +94,10 @@ input[type="password"], input[type="number"], select{
   font-weight: 400;
   font-size: 16px;
   color: #646E72;
+  padding-left: 10px;
 }
 #website-input{
-  width: 234px;
+  width: 240px;
   border:1px solid #4C8DD0;
   border-right: none;
   border-top-right-radius: 0px;
@@ -101,20 +112,17 @@ input[type="password"], input[type="number"], select{
   padding-top: 10px;
   padding-bottom: 10px;
   width: 160px;
+  height: 40px;
   background-color: #E8EAEB;
   border:1px solid #4C8DD0;
   border-left: none;
+  box-shadow: inset rgba(100, 110, 114, 0.33) 0 2px 3px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   text-align: center;
-  color: #646E72;
 }
-/*in mozilla domain name's bottom padding is off by 1 px*/
-@-moz-document url-prefix(){
-  .domain-name {
-    padding-bottom: 9px;
-    padding-top: 9px;
-  }
+#domain-label{
+  vertical-align: middle;
 }
 .name-container, .email-container, .credit-card-container{
   margin-bottom: 30px;
@@ -149,17 +157,39 @@ input[type="password"], input[type="number"], select{
   padding-top: 4px;
 }
 #credit-card-input{
-  width: 212px;
+  width: 218px;
   margin-right: 6px;
 }
-.credit-card-img{
+input[name="credit-card"]{
+  display: none;
+}
+input[name="credit-card"]:checked + label{
+  border: 1px solid #4C8DD0;
+}
+.credit-card-label{
+  display: inline-block;
   vertical-align: middle;
   width: 40px;
   height: 24px;
   margin-left: 4px;
+  margin-top: 0px;
+  text-indent: -10000px;
+  cursor: pointer;
+}
+#visa-label{
+  background: -webkit-image-set(url("./images/cc-icon-visa.png") 1x, url("./images/cc-icon-visa@2x.png") 2x);
+}
+#mastercard-label{
+  background: -webkit-image-set(url("./images/cc-icon-mastercard.png") 1x, url("./images/cc-icon-mastercard@2x.png") 2x);
+}
+#discover-label{
+  background: -webkit-image-set(url("./images/cc-icon-discover.png") 1x, url("./images/cc-icon-discover@2x.png") 2x);
+}
+#amex-label{
+  background: -webkit-image-set(url("./images/cc-icon-amex.png") 1x, url("./images/cc-icon-amex@2x.png") 2x);
 }
 #security-code-input{
-  width: 126px;
+  width: 130px;
 }
 .right-side{
   margin-left: 20px;
@@ -168,9 +198,17 @@ select{
   width: 160px;
   margin-right: 10px;
   height: 40px;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  box-shadow: rgba(100, 110, 114, 0.33) 0 2px 3px;
+  border-radius: 3px;
+  border:1px solid #4C8DD0;
+  background-color: #FFFFFF;
+  position: relative;
 }
 #expiration-year-input{
-  width: 76px;
+  width: 80px;
+  box-shadow: rgba(100, 110, 114, 0.33) 0 2px 3px;
 }
 .left-side,.right-side{
   display: inline-block;
@@ -186,6 +224,7 @@ select{
   font-weight: 600;
   font-size: 24px;
   color: #FFFFFF;
+  border: none;
 }
 #error-container{
   margin-top: 5px;
@@ -211,4 +250,23 @@ select{
 }
 .hidden{
   display: none;
+}
+/*in mozilla domain name's bottom padding is off by 1 px*/
+@-moz-document url-prefix(){
+  .domain-name {
+    padding-bottom: 9px;
+    padding-top: 9px;
+  }
+  #visa-label{
+    background: url("./images/cc-icon-visa.png");
+  }
+  #mastercard-label{
+    background: url("./images/cc-icon-mastercard.png");
+  }
+  #discover-label{
+    background: url("./images/cc-icon-discover.png");
+  }
+  #amex-label{
+    background: url("./images/cc-icon-amex.png");
+  }
 }

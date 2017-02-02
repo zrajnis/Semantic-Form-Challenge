@@ -9,25 +9,25 @@
 <body>
   <div class="container">
     <div class="form-container">
+			<header>
+				<h1> Sign Up Now </h1>
+				<p class="heading-text">Pick your new website,free forever.</p>
+			</header>
       <form id="sign-up-form" onsubmit="return validateForm()">
-        <header>
-          <h1> Sign Up Now </h1>
-          <p class="heading-text">Pick your new website,free forever.</p>
-        </header>
         <div class="form-body">
-          <span class="subtitle-number">1</span><h2>Pick a website address.</h2>
+          <span class="subtitle-number-container"><span class="subtitle-number">1</span></span><span class="subtitle-text">Pick a website address.</span>
           <fieldset>
-              <label for="website-input">Website address:</label>
+              <label for="website-input" id="website-address-label">Website address:</label>
               <div class="website-input-container">
-                <input type="text"autocorrect="off" autocomplete="off" id="website-input" pattern="[a-zA-Z0-9_.-]{2,16}" title="Allowed characters are letters,numbers and .-_" required
-								/><span class="domain-name">.free-websites.com</span>
+                <input type="text"autocorrect="off" autocomplete="off" id="website-input" aria-labelledby="website-address-label domain-label" pattern="[a-zA-Z0-9_.-]{2,16}" title="Allowed characters are letters,numbers and .-_ . Must be at least 2 characters long." required
+								/><span class="domain-name"><label id="domain-label">.free-websites.com</label></span>
               </div>
           </fieldset>
-          <span class="subtitle-number">2</span><h2>Create an account.</h2>
+          <span class="subtitle-number-container"><span class="subtitle-number">2</span></span><span class="subtitle-text">Create an account.</span>
           <fieldset>
             <label for="name-input">Full name:</label>
             <div class="name-container">
-              <input type="text" autocorrect="off" autocomplete="name" id="name-input" pattern="[a-zA-Z0-9.\s]{2,}" title="Allowed characters are letters,numbers . and space."required/>
+              <input type="text" autocorrect="off" autocomplete="name" id="name-input" pattern="[a-zA-Z0-9.\s]{2,}" title="Allowed characters are letters,numbers . and space.  Must be at least 2 characters long."required/>
             </div>
             <label for="email-input">Email address:</label>
             <div class="email-container" id="signup-email-container">
@@ -42,16 +42,16 @@
 							<label for="reveal-checkbox" class="checkbox-label"><span onclick="toggleVisibility()"></span><img src="./images/check-icon.png" class="hidden" onclick="toggleVisibility()" alt="check icon"/> Reveal Password</label>
 						</div>
           </fieldset>
-          <span class="subtitle-number">3</span><h2>Enter your payment info.</h2>
+          <span class="subtitle-number-container"><span class="subtitle-number">3</span></span><span class="subtitle-text">Enter your payment info.</span>
           <fieldset>
             <label for="credit-card-input">Credit card number:</label>
             <div class="credit-card-container">
-              <input type="text" autocorrect="off" id="credit-card-input" autocomplete="cc-number" pattern="[0-9]{16,16}" title="Only numbers are allowed,must be 16 digits." required
+              <input type="text" autocorrect="off" id="credit-card-input" autocomplete="cc-number" pattern="[0-9]{16,16}" onChange="determineCardType()" title="Only numbers are allowed,must be 16 digits." required
               /><span class='image-container'><!--
-							--><img src="./images/cc-icon-visa.png" srcset="./images/cc-icon-visa.png 1x, ./images/cc-icon-visa@2x.png 2x" alt="visa" class="credit-card-img"/><!--
-              --><img src="./images/cc-icon-mastercard.png" srcset="./images/cc-icon-mastercard.png 1x, ./images/cc-icon-mastercard@2x.png 2x" alt="mastercard" class="credit-card-img"/><!--
-              --><img src="./images/cc-icon-discover.png" srcset="./images/cc-icon-discover.png 1x, ./images/cc-icon-discover@2x.png 2x" alt="discover" class="credit-card-img"/><!--
-              --><img src="./images/cc-icon-amex.png" srcset="./images/cc-icon-amex.png 1x, ./images/cc-icon-amex@2x.png 2x" alt="american express" class="credit-card-img"/>
+							--><input type="radio" value="visa" name="credit-card" id="visa-radio"/><label for="visa-radio" class="credit-card-label" id="visa-label">Visa</label><!--
+              --><input type="radio" value="mastercard" name="credit-card" id="mastercard-radio"/><label for="mastercard-radio" class="credit-card-label" id="mastercard-label">Mastercard</label><!--
+              --><input type="radio" value="discover" name="credit-card" id="discover-radio"/><label for="discover-radio" class="credit-card-label" id="discover-label">Discover</label><!--
+              --><input type="radio" value="amex" name="credit-card" id="amex-radio"/><label for="amex-radio" class="credit-card-label" id="amex-label">American Express</label>
               </span>
             </div>
 						<div class="left-side">
@@ -77,7 +77,7 @@
 									<option value="11">11-November</option>
 									<option value="12">12-December</option>
 	  						</select><!--
-	          --><input type="number" autocorrect="off" id="expiration-year-input" aria-labelledby="expiration-date-label" min="2012" max="2022" required/>
+	          --><input type="text" autocorrect="off" id="expiration-year-input" aria-labelledby="expiration-date-label" pattern="(201[7-9]|202[0-2])" title="Expiration date must be inbetween 2017 and 2022." required/>
 							</div>
 						</div>
           </fieldset>
