@@ -11,20 +11,20 @@
     <div class="form-container">
 			<header>
 				<h1> Sign Up Now </h1>
-				<p class="heading-text">Pick your new website,free forever.</p>
+				<p class="heading-text" role="banner">Pick your new website,free forever.</p>
 			</header>
       <form id="sign-up-form" onsubmit="return validateForm()">
         <div class="form-body">
-          <span class="subtitle-number-container"><span class="subtitle-number">1</span></span><span class="subtitle-text">Pick a website address.</span>
-          <fieldset>
+          <fieldset id="website-creation-container">
+						<legend class="subtitle-container"><span class="subtitle-number-container"><span class="subtitle-number">1</span></span>Pick a website address.</legend>
               <label for="website-input" id="website-address-label">Website address:</label>
               <div class="website-input-container">
                 <input type="text"autocorrect="off" autocomplete="off" id="website-input" aria-labelledby="website-address-label domain-label" pattern="[a-zA-Z0-9_.-]{2,16}" title="Allowed characters are letters,numbers and .-_ . Must be at least 2 characters long." required
 								/><span class="domain-name"><label id="domain-label">.free-websites.com</label></span>
               </div>
           </fieldset>
-          <span class="subtitle-number-container"><span class="subtitle-number">2</span></span><span class="subtitle-text">Create an account.</span>
-          <fieldset>
+          <fieldset id="account-creation-container">
+						<legend class="subtitle-container"><span class="subtitle-number-container"><span class="subtitle-number">2</span></span>Create an account.</legend>
             <label for="name-input">Full name:</label>
             <div class="name-container">
               <input type="text" autocorrect="off" autocomplete="name" id="name-input" pattern="[a-zA-Z0-9.\s]{2,}" title="Allowed characters are letters,numbers . and space.  Must be at least 2 characters long."required/>
@@ -42,8 +42,8 @@
 							<label for="reveal-checkbox" class="checkbox-label"><span onclick="toggleVisibility()"></span><img src="./images/check-icon.png" class="hidden" onclick="toggleVisibility()" alt="check icon"/> Reveal Password</label>
 						</div>
           </fieldset>
-          <span class="subtitle-number-container"><span class="subtitle-number">3</span></span><span class="subtitle-text">Enter your payment info.</span>
-          <fieldset>
+          <fieldset id="payment-info-container">
+						<legend class="subtitle-container"><span class="subtitle-number-container"><span class="subtitle-number">3</span></span>Enter your payment info.</legend>
             <label for="credit-card-input">Credit card number:</label>
             <div class="credit-card-container">
               <input type="text" autocorrect="off" id="credit-card-input" autocomplete="cc-number" pattern="[0-9]{16,16}" onChange="determineCardType()" title="Only numbers are allowed,must be 16 digits." required

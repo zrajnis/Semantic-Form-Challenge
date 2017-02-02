@@ -19,7 +19,7 @@ input[type="password"], input[type="number"], select, .credit-card-label{
 header{
   width: 460px;
   margin: auto;
-  margin-bottom: 40px;
+  margin-bottom: 50px; /*making up for legend being out of the container */
   padding-top: 5px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ABCCD5;
@@ -38,20 +38,21 @@ h1{
   font-size: 16px;
   color: #646E72;
 }
-label{
-  margin-top: 20px;
-}
 .heading-text{
   margin-top: 0px;
   margin-left: 10px;
 }
-.subtitle-text{
+.subtitle-container{
   display: inline-block;
+  position: relative;
   margin: 0px;
+  margin-bottom: 5px; /* +15 from changing posiion*/
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 24px;
   color: #4C8DD0;
+  left: -53px;
+  top: -15px;
 }
 .subtitle-number-container{
   position:relative;
@@ -75,9 +76,11 @@ label{
 fieldset{
   width: 400px;
   padding: 20px;
+  padding-top: 0px;
   margin: auto;
   margin-bottom: 25px;
   padding-bottom: 30px;
+  margin-top: 40px;//to compensate for legend sticking out
   border-radius: 3px;
   background-color: #F2F3F4;
   border: none;
