@@ -147,6 +147,7 @@ input[type="password"], input[type="number"], select{
   position: absolute;
   top: 12px;
   left: 4px;
+  cursor: pointer;
 }
 .checkbox-container{
   position: relative;
@@ -157,6 +158,14 @@ input[type="password"], input[type="number"], select{
   font-size: 13px;
   color: #646E72;
   padding-top: 4px;
+}
+.checkbox-text{
+  vertical-align: middle;
+  position: relative;
+  display: inline!important;
+  top: -5px;
+  left: 2px;
+  background: none!important;
 }
 #credit-card-input{
   width: 218px;
@@ -169,7 +178,7 @@ input[name="credit-card"]{
   opacity: 0;
 }
 input[name="credit-card"]:checked + label{
-  border: 1px solid #4C8DD0;
+  opacity: 1;
 }
 .credit-card-label{
   display: inline-block;
@@ -179,7 +188,7 @@ input[name="credit-card"]:checked + label{
   margin-left: 4px;
   margin-top: 0px;
   text-indent: -10000px;
-  cursor: pointer;
+  opacity: 0.25;
 }
 #visa-label{
   background: -webkit-image-set(url("./images/cc-icon-visa.png") 1x, url("./images/cc-icon-visa@2x.png") 2x);

@@ -1,9 +1,10 @@
+//TODO event handler
 // regular expressions for each input
 var websiteRegex = /^[a-zA-Z0-9_.-]{2,16}$/;
 var nameRegex = /^[a-zA-Z0-9.\s]{2,}$/;
 var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 var passwordRegex = /^[\s\S]{4,16}$/;
-var creditCardRegex = /^[0-9]{16,16}$/;
+var creditCardRegex = /^[0-9\s]{16,20}$/;
 var securityRegex = /^[0-9]{3,4}$/;
 var expirationYearRegex = /^[0-9]{4,4}$/;
 
@@ -19,7 +20,7 @@ var nameError = 'Please enter a valid name.';
 var emailError = 'Please enter a valid email address.';
 var passwordError = 'Password must be 4-16 characters long.';
 var creditCardError = 'Please enter a valid credit card number.';
-var creditCardTypeError = 'Please choose a credit card type.';
+var creditCardTypeError = 'Credit card type is not recognized.';
 var securityCodeError = 'Please enter valid securityCode number.';
 var expirationYearError = 'Please enter valid expiration year.';
 
@@ -37,25 +38,42 @@ var image = new Image(2,16);
 var label = document.createElement('label');
 
 function determineCardType() {
+
   var creditCardNumber = document.getElementById('credit-card-input');
-  if(visaRegex.test(creditCardNumber.value) === true){
-    document.getElementById('visa-radio').checked = true;
+  var ccNumberWithNoSpaces = creditCardNumber.value.replace(/\s/g,'');
+  if(visaRegex.test(ccNumberWithNoSpaces)){
+    //document.getElementById('visa-radio').checked = true;
+    disableCardImages('visa-label');
   }
-  else if(mastercardRegex.test(creditCardNumber.value) === true){
-    document.getElementById('mastercard-radio').checked = true;
+  else if(mastercardRegex.test(ccNumberWithNoSpaces)){
+    disableCardImages('mastercard-label');
   }
-  else if(discoverRegex.test(creditCardNumber.value) === true){
-    document.getElementById('discover-radio').checked = true;
+  else if(discoverRegex.test(ccNumberWithNoSpaces)){
+    disableCardImages('discover-label');
   }
-  else if(amexRegex.test(creditCardNumber.value) === true){
-    document.getElementById('amex-radio').checked = true;
+  else if(amexRegex.test(ccNumberWithNoSpaces)){
+    disableCardImages('amex-label');
   }
   else{
-    document.getElementById('visa-radio').checked = false;
-    document.getElementById('mastercard-radio').checked = false;
-    document.getElementById('discover-radio').checked = false;
-    document.getElementById('amex-radio').checked = false;
+    document.getElementById('visa-label').style.opacity = 0.25;
+    document.getElementById('mastercard-label').style.opacity = 0.25;
+    document.getElementById('discover-label').style.opacity = 0.25;
+    document.getElementById('amex-label').style.opacity = 0.25;
   }
+};
+
+function disableCardImages(cardId) {
+  var cardIdArray = ['visa-label','mastercard-label', 'discover-label',
+  'amex-label'];
+  for( var cnt = 0; cnt < 4; cnt ++){
+    if(cardId === cardIdArray[cnt]){
+      document.getElementById(cardIdArray[cnt]).style.opacity = 1;
+    }
+    else{
+      document.getElementById(cardIdArray[cnt]).style.opacity = 0.25;
+    }
+  }
+
 }
 
 function toggleVisibility() {
@@ -68,7 +86,7 @@ function toggleVisibility() {
   }
 };
 
-function errorMsg(element,message){
+function errorMsg(event,element,message){ //event is passed because firefox requires a handle
   event.preventDefault();
   imgContainer.style.display = 'inline-block';
   label.className = 'error';
@@ -86,61 +104,61 @@ function errorMsg(element,message){
   errorContainer.appendChild(label);
 };
 
-function validateForm (){
+function validateForm (event){
   var websiteAddress = document.getElementById('website-input');
   var name = document.getElementById('name-input');
   var emailAddress = document.getElementById('email-input');
   var password = document.getElementById('password-input');
+  var visaLabel = document.getElementById('visa-label');
   var creditCardNumber = document.getElementById('credit-card-input');
-  var visaRadio = document.getElementById('visa-radio');
-  var mastercardRadio = document.getElementById('mastercard-radio');
-  var discoverRadio = document.getElementById('discover-radio');
-  var amexRadio = document.getElementById('amex-radio');
+  var ccNumberWithNoSpaces = creditCardNumber.value.replace(/\s/g,'');
   var securityCode = document.getElementById('security-code-input');
   var expirationDateMonth = document.getElementById('expiration-month-input');
   var expirationDateYear = document.getElementById('expiration-year-input');
   var currentYear = new Date().getFullYear();
 
   if(websiteAddress.value.trim() === '' ||
-  websiteRegex.test(websiteAddress.value) === false){
-    errorMsg(websiteAddress,websiteError);
+  !websiteRegex.test(websiteAddress.value)){
+    errorMsg(event,websiteAddress,websiteError);
     return false;
   }
-  else if(name.value.trim() === '' ||
-  nameRegex.test(name.value) === false){
-    errorMsg(name,nameError);
+  else if(name.value.trim() === '' || !nameRegex.test(name.value)){
+    errorMsg(event,name,nameError);
     return false;
   }
   else if(emailAddress.value.trim() === '' ||
   emailRegex.test(emailAddress.value) === false){
-    errorMsg(emailAddress,emailError);
+    errorMsg(event,emailAddress,emailError);
     return false;
   }
   else if(password.value.trim() === '' ||
-  passwordRegex.test(password.value) === false){
-    errorMsg(password,passwordError);
+  !passwordRegex.test(password.value)){
+    errorMsg(event,password,passwordError);
     return false;
   }
   else if(creditCardNumber.value.trim() === '' ||
-  creditCardRegex.test(creditCardNumber.value) === false){
-    errorMsg(creditCardNumber,creditCardError);
+  !creditCardRegex.test(creditCardNumber.value)){
+    errorMsg(event,creditCardNumber,creditCardError);
     return false;
   }
-  else if(visaRadio.checked === false && mastercardRadio.checked === false
-  && discoverRadio.checked === false && amexRadio.checked === false){
-    errorMsg(visaRadio.parentElement,creditCardTypeError);
+  else if(!visaRegex.test(ccNumberWithNoSpaces) &&
+  !mastercardRegex.test(ccNumberWithNoSpaces) &&
+  !discoverRegex.test(ccNumberWithNoSpaces) &&
+  !amexRegex.test(ccNumberWithNoSpaces)){
+    errorMsg(event,visaLabel,creditCardTypeError);
     return false;
   }
   else if(securityCode.value.trim() === '' ||
-  securityRegex.test(securityCode.value) === false){
-    errorMsg(securityCode,securityCodeError);
+  !securityRegex.test(securityCode.value)){
+    errorMsg(event,securityCode,securityCodeError);
     return false;
   }
   else if(expirationDateYear.value.trim() === '' ||
-  expirationYearRegex.test(expirationDateYear.value) === false ||
+  !expirationYearRegex.test(expirationDateYear.value) ||
   expirationDateYear.value > (currentYear + 5) ||
   expirationDateYear.value < currentYear){
-    errorMsg(expirationDateYear,expirationYearError);
+    errorMsg(event,expirationDateYear,expirationYearError);
     return false;
   }
+
 };
