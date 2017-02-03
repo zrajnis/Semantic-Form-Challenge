@@ -19,6 +19,7 @@ var nameError = 'Please enter a valid name.';
 var emailError = 'Please enter a valid email address.';
 var passwordError = 'Password must be 4-16 characters long.';
 var creditCardError = 'Please enter a valid credit card number.';
+var creditCardTypeError = 'Please choose a credit card type.';
 var securityCodeError = 'Please enter valid securityCode number.';
 var expirationYearError = 'Please enter valid expiration year.';
 
@@ -91,6 +92,10 @@ function validateForm (){
   var emailAddress = document.getElementById('email-input');
   var password = document.getElementById('password-input');
   var creditCardNumber = document.getElementById('credit-card-input');
+  var visaRadio = document.getElementById('visa-radio');
+  var mastercardRadio = document.getElementById('mastercard-radio');
+  var discoverRadio = document.getElementById('discover-radio');
+  var amexRadio = document.getElementById('amex-radio');
   var securityCode = document.getElementById('security-code-input');
   var expirationDateMonth = document.getElementById('expiration-month-input');
   var expirationDateYear = document.getElementById('expiration-year-input');
@@ -119,6 +124,11 @@ function validateForm (){
   else if(creditCardNumber.value.trim() === '' ||
   creditCardRegex.test(creditCardNumber.value) === false){
     errorMsg(creditCardNumber,creditCardError);
+    return false;
+  }
+  else if(visaRadio.checked === false && mastercardRadio.checked === false
+  && discoverRadio.checked === false && amexRadio.checked === false){
+    errorMsg(visaRadio.parentElement,creditCardTypeError);
     return false;
   }
   else if(securityCode.value.trim() === '' ||

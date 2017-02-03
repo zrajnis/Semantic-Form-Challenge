@@ -163,7 +163,10 @@ input[type="password"], input[type="number"], select{
   margin-right: 6px;
 }
 input[name="credit-card"]{
-  display: none;
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  opacity: 0;
 }
 input[name="credit-card"]:checked + label{
   border: 1px solid #4C8DD0;
@@ -202,11 +205,11 @@ select{
   height: 40px;
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
+  vertical-align: bottom;
   box-shadow: rgba(100, 110, 114, 0.33) 0 2px 3px;
-  border-radius: 3px;
+  border-radius: 3px!important;
   border:1px solid #4C8DD0;
   background-color: #FFFFFF;
-  position: relative;
 }
 #expiration-year-input{
   width: 80px;

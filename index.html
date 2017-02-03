@@ -48,10 +48,10 @@
             <div class="credit-card-container">
               <input type="text" autocorrect="off" id="credit-card-input" autocomplete="cc-number" pattern="[0-9]{16,16}" onChange="determineCardType()" title="Only numbers are allowed,must be 16 digits." required
               /><span class='image-container'><!--
-							--><input type="radio" value="visa" name="credit-card" id="visa-radio"/><label for="visa-radio" class="credit-card-label" id="visa-label">Visa</label><!--
-              --><input type="radio" value="mastercard" name="credit-card" id="mastercard-radio"/><label for="mastercard-radio" class="credit-card-label" id="mastercard-label">Mastercard</label><!--
-              --><input type="radio" value="discover" name="credit-card" id="discover-radio"/><label for="discover-radio" class="credit-card-label" id="discover-label">Discover</label><!--
-              --><input type="radio" value="amex" name="credit-card" id="amex-radio"/><label for="amex-radio" class="credit-card-label" id="amex-label">American Express</label>
+							--><input type="radio" value="visa" name="credit-card" id="visa-radio" required title="Only numbers are allowed, must be 3-4 digits long."/><label for="visa-radio" class="credit-card-label" id="visa-label">Visa</label><!--
+              --><input type="radio" value="mastercard" name="credit-card" id="mastercard-radio" required/><label for="mastercard-radio" class="credit-card-label" id="mastercard-label">Mastercard</label><!--
+              --><input type="radio" value="discover" name="credit-card" id="discover-radio" required/><label for="discover-radio" class="credit-card-label" id="discover-label">Discover</label><!--
+              --><input type="radio" value="amex" name="credit-card" id="amex-radio" required/><label for="amex-radio" class="credit-card-label" id="amex-label">American Express</label>
               </span>
             </div>
 						<div class="left-side">
